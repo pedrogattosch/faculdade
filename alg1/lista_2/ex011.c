@@ -26,25 +26,16 @@ nodo *criaNodo(int x){
 }
 
 nodo *remover(nodo *lista, int x){
-    nodo *atual = lista;
-    nodo *anterior = NULL;
+    if(lista == NULL) return NULL;
 
-    while (atual != NULL){
-        if (atual->info == x){
-            nodo *temp = atual;
-            if(anterior == NULL){
-                lista = atual->prox;
-                atual = lista;
-            } else{
-                anterior->prox = atual->prox;
-                atual = atual->prox;
-            }
-            free(temp);
-        } else{
-            anterior = atual;
-            atual = atual->prox;
-        }
+    lista->prox = remover(lista->prox, x);
+
+    if(lista->info == x){
+        nodo *temp = lista->prox;
+        free(lista);
+        return temp;
     }
+
     return lista;
 }
 
@@ -74,3 +65,4 @@ int main(){
 
 	return 0;
 }
+

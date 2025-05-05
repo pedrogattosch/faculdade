@@ -26,26 +26,33 @@ nodo *criaNodo(int x){
 }
 
 nodo *remover(nodo *lista, int x){
-    nodo *atual = lista;
-    nodo *anterior = NULL;
+    if(lista == NULL) return NULL;
 
-    while (atual != NULL){
-        if (atual->info == x){
-            nodo *temp = atual;
-            if(anterior == NULL){
-                lista = atual->prox;
-                atual = lista;
-            } else{
-                anterior->prox = atual->prox;
-                atual = atual->prox;
-            }
-            free(temp);
-        } else{
-            anterior = atual;
-            atual = atual->prox;
-        }
+    lista->prox = remover(lista->prox, x);
+
+    if(lista->info == x){
+        nodo *temp = lista->prox;
+        free(lista);
+        return temp;
     }
+
     return lista;
+}
+
+int soma_iterativa(nodo *lista){
+    int soma = 0;
+
+    while (lista != NULL){
+        soma += lista->info;
+        lista = lista->prox;
+    }
+
+    return soma;
+}
+
+int soma_recursiva(nodo *lista){
+    if (lista == NULL) return 0;
+    return lista->info + soma_recursiva(lista->prox);
 }
 
 void imprime(nodo *lista){
@@ -64,6 +71,9 @@ int main(){
 	insereApos(lista, 21);
 	insereApos(lista, 3);
 
+	printf("%d\n", soma_iterativa(lista));
+	printf("%d\n", soma_recursiva(lista));
+
 	imprime(lista);
 
 	remover(lista, 21);
@@ -74,3 +84,5 @@ int main(){
 
 	return 0;
 }
+
+
