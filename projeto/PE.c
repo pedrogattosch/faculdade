@@ -8,9 +8,9 @@ Pilha *cria_pilha(){
     return p;
 }
 
-void pushPilha(Pilha *p, int x){
+void pushPilha(Pilha *p, Certificado *cert){
     p->topo++;
-    p->v[p->topo] = x;
+    p->v[p->topo] = cert;
 }
 
 Certificado *popPilha(Pilha *p){

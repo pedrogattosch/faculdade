@@ -2,7 +2,8 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "PD.h"
+#include "PE.h"
+#include "FE.h"
 
 #define MAX_CHAR 256
 
@@ -28,6 +29,8 @@ char *certificado(Pilha *p, char *s){
 
 int main(){
     Pilha *p = cria_pilha();
+    Fila *f = cria_fila();
+
     char comando[MAX_CHAR];
 
     while(1){
@@ -46,5 +49,7 @@ int main(){
     }
 
 	libera_pilha(p);
+    libera_fila(f);
+
     return 0;
 }
