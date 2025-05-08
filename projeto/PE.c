@@ -8,14 +8,18 @@ Pilha *cria_pilha(){
     return p;
 }
 
-void push(Pilha *p, int x){
+void pushPilha(Pilha *p, int x){
     p->topo++;
     p->v[p->topo] = x;
 }
 
-int pop(Pilha *p){
-    int x = p->v[p->topo];
+Certificado *popPilha(Pilha *p){
+    Certificado *cert = p->v[p->topo];
     p->topo--;
 
-    return x;
+    return cert;
 }
+
+void libera_pilha(Pilha *p){
+    free(p);
+}   

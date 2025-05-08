@@ -8,18 +8,22 @@ Pilha *cria_pilha(){
     return p;
 }
 
-void push(Pilha *p, int x){
+void pushPilha(Pilha *p, Certificado *cert){
     nodo *novo = (nodo *)malloc(sizeof(nodo));
-    novo->info = x;
+    novo->info = cert;
     novo->prox = p->topo;
     p->topo = novo;
 }
 
-int pop(Pilha *p){
-    int x = p->topo->info;
+Certificado *popPilha(Pilha *p){
+    Certificado *cert = p->topo->info;
     nodo *aux = p->topo->prox;
     free(p->topo);
     p->topo = aux;
 
-    return x;
+    return cert;
 }
+
+void libera_pilha(Pilha *p){
+    free(p);
+}   
