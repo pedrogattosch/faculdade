@@ -1,12 +1,9 @@
 #ifndef PE_H
 #define PE_H
 
-#define MAX 101
+#include "certificado.h"
 
-typedef struct{
-    char nome[MAX];
-    int horas;
-} Certificado;
+#define MAX 101
 
 typedef struct{
     Certificado *v[MAX];
